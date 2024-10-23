@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Cities Weather Data</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>Weather Data for All Cities</h1>
+<div th:if="${responseMessage}">
+    <p th:text="${responseMessage}" style="color: green;"></p>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>City</th>
+        <th>Temperature (°C)</th>
+        <th>Min Temperature (°C)</th>
+        <th>Max Temperature (°C)</th>
+        <th>Condition</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="weather : ${weatherDataList}">
+        <td th:text="${weather.city}">City</td>
+        <td th:text="${weather.temperature}">Temperature</td>
+        <td th:text="${weather.minTemperature}">Min Temp</td>
+        <td th:text="${weather.maxTemperature}">Max Temp</td>
+        <td th:text="${weather.mainCondition}">Condition</td>
+    </tr>
+    </tbody>
+</table>
+<a href="/weather/summary">View Daily Summary</a>
+</body>
+</html>

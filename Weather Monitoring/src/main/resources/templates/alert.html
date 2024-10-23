@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Alert</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>Weather Alert for a City</h1>
+<div th:if="${responseMessage}">
+    <p th:text="${responseMessage}" style="color: red;"></p>
+</div>
+
+<form action="#" th:action="@{/weather/alert/{city}(city=${city})}" method="get">
+    <label for="city">Enter City:</label>
+    <input type="text" id="city" name="city" required>
+    <button type="submit">Check Alert</button>
+</form>
+
+<div th:if="${alert != null}">
+    <h2>Alert for <span th:text="${city}"></span></h2>
+    <p><strong>Alert Triggered:</strong> <span th:text="${alert.alertTriggered}"></span></p>
+    <p><strong>Message:</strong> <span th:text="${alert.message}"></span></p>
+</div>
+</body>
+</html>

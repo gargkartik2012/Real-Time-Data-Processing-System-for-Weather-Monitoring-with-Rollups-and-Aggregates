@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang=en xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Summary</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h1>Weather Summary for a City</h1>
+<div th:if="${responseMessage}">
+    <p th:text="${responseMessage}" style="color: grey;"></p>
+</div>
+<form action="#" th:action="@{/weather/summary/{city}(city=${city})}" method="get">
+    <label for="city">Enter City:</label>
+    <input type="text" id="city" name="city" required>
+    <button type="submit">Get Summary</button>
+</form>
+
+<div th:if="${summary != null}">
+    <h2>Weather Summary for <span th:text="${city}"></span></h2>
+    <p><strong>Average Temperature:</strong> <span th:text="${summary.averageTemperature}"></span> °C</p>
+    <p><strong>Maximum Temperature:</strong> <span th:text="${summary.maxTemperature}"></span> °C</p>
+    <p><strong>Minimum Temperature:</strong> <span th:text="${summary.minTemperature}"></span> °C</p>
+    <p><strong>Dominant Condition:</strong> <span th:text="${summary.dominantCondition}"></span></p>
+</div>
+</body>
+</html>
